@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:24.04
+FROM ghcr.io/kodeythomas/ubuntu:rolling@sha256:47264f0e8a2b045270783ba06585dae10f092af84453949b1085127bb73d7e02 AS base
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
