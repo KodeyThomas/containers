@@ -77,4 +77,7 @@ RUN sed -i "s/RootRequired=1/RootRequired=0/g" /usr/local/bin/DBRepair.sh && \
 USER 568
 COPY ./apps/plex/plex-preferences.sh /scripts/plex-preferences.sh
 COPY ./apps/plex/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+RUN chmod +x /scripts/plex-preferences.sh
+
 CMD ["/entrypoint.sh"]
