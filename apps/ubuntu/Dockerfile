@@ -24,6 +24,7 @@ RUN \
 
 FROM public.ecr.aws/docker/library/ubuntu:${VERSION}
 
+
 ARG VERSION
 ARG CHANNEL
 ARG TARGETPLATFORM
