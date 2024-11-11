@@ -35,6 +35,9 @@ on:
         default: 'false'
         type: string
 
+env:
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build-and-test:
     name: Build and test
@@ -45,8 +48,6 @@ jobs:
       matrix:
         image: ["${{ fromJson(inputs.imagesToBuild) }}"]
       fail-fast: false
-    env:
-      TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
         with:
