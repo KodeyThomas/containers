@@ -5,6 +5,8 @@ file:
     exists: true
   /scripts/umask.sh:
     exists: true
+  /scripts/vpn.sh:
+    exists: true
   /usr/local/bin/envsubst:
     exists: true
 
