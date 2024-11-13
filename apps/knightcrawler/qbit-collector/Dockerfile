@@ -1,5 +1,5 @@
 # Get upstream code
-FROM alpine:latest as cloner
+FROM python:3.11.9-alpine as cloner
 ARG VERSION
 
 RUN apk update && apk upgrade && \
@@ -24,7 +24,7 @@ WORKDIR /app
 
 ENV PYTHONUNBUFFERED=1
 
-RUN apk add --update --no-cache python3=~3.11.9 py3-pip && ln -sf python3 /usr/bin/python
+RUN apk add --update --no-cache py3-pip && ln -sf python3 /usr/bin/python
 
 COPY --from=build /src/out .
 
