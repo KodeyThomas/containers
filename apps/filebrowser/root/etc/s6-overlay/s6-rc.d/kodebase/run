@@ -1,0 +1,5 @@
+#!/command/with-contenv bash
+
+ln -s /storage/config/plextraktsync /home/beepboop/.config
+
+/kodebase.sh
