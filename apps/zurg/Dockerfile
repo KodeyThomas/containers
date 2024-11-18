@@ -7,7 +7,7 @@ ARG ZURG_GH_CREDS
 RUN apk update && apk upgrade && \
 	apk add --no-cache git openssh
 
-RUN git clone -b main git@github.com:${ZURG_GH_CREDS}/debridmediamanager/zurg.git /source
+RUN git clone -b main git@github.com:$ZURG_GH_CREDS/debridmediamanager/zurg.git /source
 
 FROM golang:1-alpine AS builder
 ARG BuiltAt
