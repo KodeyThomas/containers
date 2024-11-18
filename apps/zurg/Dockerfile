@@ -10,7 +10,7 @@ RUN apk update && apk upgrade && \
 RUN mkdir -p /root/.ssh && \
 	chmod 0700 /root/.ssh && \
 	ssh-keyscan github.com > /root/.ssh/known_hosts && \
-	echo $SSH_PRIVATE_KEY > /root/.ssh/id_rsa && \
+	printf "%s\n" "$PRIVATE_KEY" > /root/.ssh/id_rsa && \
 	chmod 600 /root/.ssh/id_rsa
 
 RUN git clone git@github.com:debridmediamanager/zurg.git /source
