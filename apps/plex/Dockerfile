@@ -1,4 +1,4 @@
-FROM ghcr.io/kodeythomas/ubuntu:rolling@sha256:47264f0e8a2b045270783ba06585dae10f092af84453949b1085127bb73d7e02 AS base
+FROM ghcr.io/kodeythomas/ubuntu:rolling AS base
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
@@ -21,36 +21,36 @@ RUN \
     apt-get -qq update \
     && \
     apt-get -qq install -y \
-        gnupg2 \
+    gnupg2 \
     && \
     case "${TARGETPLATFORM}" in \
-        'linux/amd64') \
-            curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - \
-            && echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list \
-            && \
-            export ARCH='amd64'; \
-            export EXTRA_INSTALL_ARG='intel-opencl-icd=21.49.21786+i643~u20.04'; \
-        ;; \
-        'linux/arm64') \
-            export ARCH='arm64'; \
-            export EXTRA_INSTALL_ARG=''; \
-        ;; \
+    'linux/amd64') \
+    curl -sL https://repositories.intel.com/graphics/intel-graphics.key | apt-key add - \
+    && echo 'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main' > /etc/apt/sources.list.d/intel.list \
+    && \
+    export ARCH='amd64'; \
+    export EXTRA_INSTALL_ARG='intel-opencl-icd=21.49.21786+i643~u20.04'; \
+    ;; \
+    'linux/arm64') \
+    export ARCH='arm64'; \
+    export EXTRA_INSTALL_ARG=''; \
+    ;; \
     esac \
     && \
     apt-get -qq update \
     && \
     apt-get -qq install -y \
-        aria2 \
-        uuid-runtime \
-        xmlstarlet \
-        ca-certificates \
-        pulseaudio \
-        ${EXTRA_INSTALL_ARG} \
+    aria2 \
+    uuid-runtime \
+    xmlstarlet \
+    ca-certificates \
+    pulseaudio \
+    ${EXTRA_INSTALL_ARG} \
     && \
     echo "Using curl or wget to download the plex debian package result in a qemu failure, why? I dunno" \
     && \
     aria2c -d /tmp -o plex.deb \
-        "${PLEX_DOWNLOAD}/${VERSION}/debian/plexmediaserver_${VERSION}_${ARCH}.deb" \
+    "${PLEX_DOWNLOAD}/${VERSION}/debian/plexmediaserver_${VERSION}_${ARCH}.deb" \
     && \
     dpkg -i --force-confold /tmp/plex.deb \
     && \
@@ -60,10 +60,10 @@ RUN \
     && apt-get clean \
     && \
     rm -rf \
-        /etc/default/plexmediaserver \
-        /tmp/* \
-        /var/lib/apt/lists/* \
-        /var/tmp/ \
+    /etc/default/plexmediaserver \
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/ \
     && chown -R root:root /app \
     && chmod -R 755 "${PLEX_MEDIA_SERVER_HOME}" \
     && printf "umask %d" "${UMASK}" >> /etc/bash.bashrc
