@@ -13,7 +13,7 @@ RUN mkdir -p /root/.ssh && \
 	echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa && \
 	chmod 600 /root/.ssh/id_rsa
 
-RUN git clone git@github.com/debridmediamanager/zurg.git /source
+RUN git clone git@github.com:debridmediamanager/zurg.git /source
 
 FROM golang:1-alpine AS builder
 ARG BuiltAt
