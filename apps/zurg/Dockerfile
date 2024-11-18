@@ -2,18 +2,12 @@ FROM alpine:latest as cloner
 
 ARG CHANNEL
 ARG VERSION
-ARG SSH_PRIVATE_KEY
+ARG ZURG_GH_CREDS
 
 RUN apk update && apk upgrade && \
-	apk add --no-cache git openssh
+	apk add --no-cache git
 
-RUN mkdir -p /root/.ssh && \
-	chmod 0700 /root/.ssh && \
-	ssh-keyscan github.com > /root/.ssh/known_hosts && \
-	printf "%s\n" "$PRIVATE_KEY" > /root/.ssh/id_rsa && \
-	chmod 600 /root/.ssh/id_rsa
-
-RUN git clone git@github.com:debridmediamanager/zurg.git /source
+RUN git clone https://KodeyThomas:$ZURG_GH_CREDS@github.com/debridmediamanager/zurg.git /source
 
 FROM golang:1-alpine AS builder
 ARG BuiltAt
