@@ -1,4 +1,4 @@
-FROM ghcr.io/kodeythomas/alpine:rolling@sha256:672b59dc4580b8aaae42e839c878501109ed7a810072c872363250930899bf16 
+FROM ghcr.io/kodeythomas/alpine:rolling
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
