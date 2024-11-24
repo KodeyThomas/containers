@@ -31,7 +31,7 @@ RUN \
 	rm -rf \
 	/app/Prowlarr.Update \
 	&& \
-	printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[geek-cookbook](https://github.com/geek-cookbook)" "${PROWLARR__BRANCH}" "${VERSION}" > /app/package_info \
+	printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[kodey :3](https://github.com/kodeythomas)" "${PROWLARR__BRANCH}" "${VERSION}" > /app/package_info \
 	&& chown -R root:root /app \
 	&& chmod -R 755 /app \
 	&& rm -rf /tmp/*
