@@ -1,0 +1,8 @@
+---
+process:
+  pex:
+    running: true
+
+http:
+  http://localhost:4000:
+    status: 200
