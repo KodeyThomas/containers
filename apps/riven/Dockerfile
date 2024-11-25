@@ -7,7 +7,7 @@ ARG VERSION
 RUN apk update && apk upgrade && \
 	apk add --no-cache git
 
-RUN git clone -b $VERSION https://github.com/rivenmedia/riven.git /source
+RUN if [[ $CHANNEL != "dev" ]] ; then git clone -b $VERSION https://github.com/rivenmedia/riven.git /source ; else git clone -b "feature/torbox" https://github.com/rivenmedia/riven.git /source ; fi
 
 # Builder Image for Python Dependencies
 FROM python:3.11-alpine AS builder
