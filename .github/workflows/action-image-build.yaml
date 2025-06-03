@@ -2,6 +2,38 @@ name: "Action: Image Build"
 
 on:
   workflow_call:
+   inputs:
+      imagesToBuild:
+        description: |-
+          Pass a json string with the images and channels to build. e.g.:
+            [
+              {
+                "app": "sonarr",
+                "channel": "main"
+              },
+              {
+                "app": "sonarr",
+                "channel": "develop"
+              }
+            ]
+        required: false
+        type: string
+        default: ''
+
+      pushImages:
+        required: false
+        default: 'true'
+        type: string
+
+      updateMetadata:
+        required: false
+        default: 'false'
+        type: string
+
+      sendNotification:
+        required: false
+        default: 'false'
+        type: string
   workflow_dispatch:
     inputs:
       imagesToBuild:
